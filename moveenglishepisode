@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Script to move TV Episodes from Sabnzdb Download Folder to destination
+#
+
+# Variablendeklaration
+BaseDir=/media/d3c21c66-af4b-41d4-b098-462e83fa641d/Serien/
+ShortBDen=/ln/target/English
+DownloadFolderEN=/opt/SABnzbd/Downloads/complete
+Serie="{n.replaceAll(/[!?.]+\$/).replaceAll(/[\`´‘’ʻ]/, \"'\").replace(':',' -')}"
+Titel="{t.replaceAll(/[!?.]+\$/).replaceAll(/[\`´‘’ʻ]/, \"'\")}"
+
+moveen(){
+        filebot -rename "$DownloadFolderEN" --db thetvdb --format "$ShortBDen/$Serie/Staffel {s} EN {vf}/$Serie - {s00e00} - $Titel" -non-strict -r
+}
+
+moveen
+
+exit 0
